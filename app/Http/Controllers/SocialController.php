@@ -12,17 +12,12 @@ class SocialController extends Controller
      *      - Una vez seleccionen el boton login con facebook
      * @return mixed
      */
-    public function fredirect()
+    public function facebookRedirect()
     {
         return Socialite::driver('facebook')->redirect();
-//        return Socialite::driver('facebook')->fields([
-//            'first_name', 'last_name', 'email', 'gender'
-//        ])->scopes([
-//            'email'
-//        ])->redirect();
     }
 
-    public function fcallback()
+    public function facebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
 //        $user = Socialite::driver('facebook')->fields([
@@ -39,5 +34,16 @@ class SocialController extends Controller
         dd($user);
         echo '<figure><img src="'.($user->getAvatar()).'"></figure>';
 //        return ($user->getAvatar());
+    }
+
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function googleCallback()
+    {
+        $user = Socialite::driver('google')->stateless()->user();
+        dd($user);
+//        return Socialite::driver('google')->redirect();
     }
 }

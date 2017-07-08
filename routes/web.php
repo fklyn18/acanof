@@ -16,9 +16,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*************************
+ * Login redes sociales  *
+ *************************/
 /** Login con facebook **/
-Route::get('/auth/facebook/redirect', 'SocialController@fredirect')->name('facebook-redirect');
-Route::get('/auth/facebook/callback', 'SocialController@fcallback')->name('facebook-callback');
+Route::get('/auth/facebook/redirect', 'SocialController@facebookRedirect')->name('facebook-redirect');
+Route::get('/auth/facebook/callback', 'SocialController@facebookCallback')->name('facebook-callback');
+/** Login con google **/
+Route::get('/auth/google/redirect', 'SocialController@googleRedirect')->name('google-redirect');
+Route::get('/auth/google/callback', 'SocialController@googleCallback')->name('google-callback');

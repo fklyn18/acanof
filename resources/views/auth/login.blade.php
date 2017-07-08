@@ -57,8 +57,11 @@
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
-                                <a class="btn btn-link" href="{{ route('facebook-redirect') }}">
+                                <a class="btn btn-primary" href="{{ route('facebook-redirect') }}">
                                     Facebook
+                                </a>
+                                <a class="btn btn-danger" href="{{ route('google-redirect') }}">
+                                    Google
                                 </a>
                             </div>
                         </div>
