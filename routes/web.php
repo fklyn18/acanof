@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+/** Login con facebook **/
+Route::get('/auth/facebook/redirect', 'SocialController@fredirect')->name('facebook-redirect');
+Route::get('/auth/facebook/callback', 'SocialController@fcallback')->name('facebook-callback');
