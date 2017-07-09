@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Correo</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Clave</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -57,12 +57,25 @@
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
-                                <a class="btn btn-primary" href="{{ route('facebook-redirect') }}">
-                                    Facebook
-                                </a>
-                                <a class="btn btn-danger" href="{{ route('google-redirect') }}">
-                                    Google
-                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+                                <p>
+                                    <a class="btn btn-primary btn-block" href="{{ route('facebook-redirect') }}">
+                                        Facebook
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="btn btn-danger btn-block" href="{{ route('google-redirect') }}">
+                                        Google
+                                    </a>
+                                </p>
+                                <p>
+                                    <a class="btn btn-success btn-block" href="{{ route('linkedin-redirect') }}">
+                                        LinkedIn
+                                    </a>
+                                </p>
                             </div>
                         </div>
                     </form>
