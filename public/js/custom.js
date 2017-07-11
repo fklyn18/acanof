@@ -22,7 +22,7 @@ jQuery(document).ready(function ($){
             beforeSend: function (data){},
             complete: function (data){
                 console.info(data);
-                window.location.reload(true);
+                //window.location.reload(true);
             }
         });
         console.info(locale);

@@ -44,7 +44,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">{{__('Login')}}</a></li>
-                            <li><a href="{{ route('registrar') }}">{{__('Register')}}</a></li>
+                            <li><a href="{{ route('register') }}">{{__('Register')}}</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -71,6 +71,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{__('Language')}} <span class="caret"></span>
                                 </a>
+                                sess: {{ session('locale') }}
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#" class="languageSwitcher" datatype="en">{{__('English')}}</a></li>
                                     <li><a href="#" class="languageSwitcher" datatype="es">{{__('Spanish')}}</a></li>
