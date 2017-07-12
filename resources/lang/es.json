@@ -12,5 +12,8 @@
   "Name": "Nombre",
   "E-Mail Address": "Dirección de correo electrónico",
   "Confirm": "Confirmar",
-  "Sent": "Enviar"
+  "Sent": "Enviar",
+
+  "Title": "Título",
+  "Bio": "Biología"
 }

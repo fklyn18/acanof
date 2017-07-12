@@ -18,13 +18,13 @@ Route::get('/', function () {
 /******************
  * Getor manager  *
  ******************/
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
 
     Route::get('manage/profiles', 'ProfileController@profiles')->name('all-profiles');
     Route::get ('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile/store', 'ProfileController@store')->name('store-profile');
     Route::post('/profile/edit', 'ProfileController@edit')->name('edit-profile');
-});
+//});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
