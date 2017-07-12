@@ -71,7 +71,6 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{__('Language')}} <span class="caret"></span>
                                 </a>
-                                sess: {{ session('locale') }}
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#" class="languageSwitcher" datatype="en">{{__('English')}}</a></li>
                                     <li><a href="#" class="languageSwitcher" datatype="es">{{__('Spanish')}}</a></li>

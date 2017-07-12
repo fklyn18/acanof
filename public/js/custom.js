@@ -10,7 +10,7 @@ jQuery(document).ready(function ($){
         var locale = $(this).attr('datatype');
         var _token = $('input[name="_token"]').val();
         $.ajax({
-            url:   '/language',
+            url:   'language',
             type:  'post',
             data: {
                 locale: locale,
@@ -22,7 +22,7 @@ jQuery(document).ready(function ($){
             beforeSend: function (data){},
             complete: function (data){
                 console.info(data);
-                //window.location.reload(true);
+                window.location.reload(true);
             }
         });
         console.info(locale);
