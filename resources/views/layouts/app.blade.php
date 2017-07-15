@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Custom -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -68,12 +70,12 @@
                         @endif
                             <!-- Translate links -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{__('Language')}} <span class="caret"></span>
+                                <a href="#" class="dropdown-toggle first-capitalize" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{__('language.language')}} <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#" class="languageSwitcher" datatype="en">{{__('English')}}</a></li>
-                                    <li><a href="#" class="languageSwitcher" datatype="es">{{__('Spanish')}}</a></li>
+                                    <li><a href="#" class="languageSwitcher first-capitalize @if(session('locale') == 'en') panel-title @endif" datatype="en">{{__('language.english')}}</a></li>
+                                    <li><a href="#" class="languageSwitcher first-capitalize @if(session('locale') == 'es') panel-title @endif" datatype="es">{{__('language.spanish')}}</a></li>
                                 </ul>
                             </li>
                     </ul>
