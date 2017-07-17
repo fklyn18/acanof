@@ -144,4 +144,8 @@ return [
         'subject'               => 'asunto',
         'message'               => 'mensaje',
     ],
+
+    'messages' => [
+        'saved' => ':name guardado exitosamente',
+    ],
 ];

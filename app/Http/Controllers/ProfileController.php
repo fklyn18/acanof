@@ -17,29 +17,53 @@ class ProfileController extends Controller
     public function index()
     {
         $action = '';
+        $button = '';
         // Validate if a stored user profile exists to edit but store new
         if (count(Profiles::getProfile(Auth::user()->id)->get()) > 0){
             $action = 'edit-profile';
+            $button = __('Edit');
         }else{
             $action = 'store-profile';
+            $button = __('Save');
         }
-        return View::make('manage.data', ['action'=>$action])->withTitle('Profiles.');
+        return View::make('public.profile.list', ['action'=>$action, 'button'=>$button])->withTitle('Profiles.');
     }
 
     public function profiles(){
+        dd(count(Profiles::getProfile(Auth::user()->id)->get()));
         dd(Profiles::getAllProfiles()->get());
     }
 
+    /**
+     * @description store a profile
+     * @param Request $request
+     */
     public function store(Request $request)
     {
-        dd($request->all()['title']);
         // validate fields
         $this->rulesOfValidation($request);
+//        echo "<li>".Auth::user()->id."</li>";
+//        echo "<li>".$request->all()['title']."</li>";
+//        echo "<li>".$request->all()['bio']."</li>";
+//        exit();
         // create a object to store in DB
         $profile = new Profiles();
         $profile->iduser = Auth::user()->id;
         $profile->title = $request->all()['title'];
         $profile->bio = $request->all()['bio'];
+        $profile->save();
+        return redirect(route('profile'))->with('success', __('validation.messages.saved ', ['name'=>'profile']));
+    }
+
+    public function update(Request $request){
+        // validate fields
+        $this->rulesOfValidation($request);
+        // update register
+        $profile = Profiles::find($request->all()['idreg']);
+        $profile->name = $request->all()['name'];
+        $profile->bio = $request->all()['bio'];
+        $profile->save();
+        return redirect('profile');
     }
 
     /**
@@ -51,19 +75,6 @@ class ProfileController extends Controller
             'title' => 'required|max:50|min:3',
             'bio' => 'required|max:300|min:3',
         ];
-        // validate if idioma is english
-        if (session('locale') == 'en'){
-            $this->validate($request, $rules);
-        }elseif(session('locale') == 'es'){
-            $messages = [
-                'title.required' => 'El título no puede ser mayor de 5 caracteres.',
-                'title.min' => 'El título debe tener al menos 3 caracteres.',
-                'title.max' => 'El título no puede ser mayor de 50 caracteres.',
-                'bio.required' => 'El campo de la biología es obligatorio.',
-                'bio.min' => 'La bio debe tener al menos 3 caracteres.',
-                'bio.max' => 'La bio debe tener menos 300 caracteres.',
-            ];
-            $this->validate($request, $rules, $messages);
-        }
+        $this->validate($request, $rules);
     }
 }

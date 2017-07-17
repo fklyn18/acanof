@@ -15,11 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/******************
- * Getor manager  *
- ******************/
+/*********************
+ * Routes protected  *
+ *********************/
 Route::group(['middleware' => 'auth'], function () {
-
     Route::get('manage/profiles', 'ProfileController@profiles')->name('all-profiles');
     Route::get ('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile/store', 'ProfileController@store')->name('store-profile');

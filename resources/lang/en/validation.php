@@ -148,4 +148,8 @@ return [
         'subject'               => 'subject',
         'message'               => 'message',
     ],
+
+    'messages' => [
+        'saved' => ':name saved successfully',
+    ],
 ];
