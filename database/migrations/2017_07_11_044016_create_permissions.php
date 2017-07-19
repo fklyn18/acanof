@@ -14,6 +14,7 @@ class CreatePermissions extends Migration
     public function up()
     {
         Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('iduser');
             $table->integer('idscreen');
             $table->smallInteger('level')->comment('1:Consultar, 2:Modificar, 3:Eliminar');

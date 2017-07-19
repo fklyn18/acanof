@@ -151,5 +151,6 @@ return [
 
     'messages' => [
         'saved' => ':name saved successfully',
+        'failed_save' => ':name failed save succefully',
     ],
 ];

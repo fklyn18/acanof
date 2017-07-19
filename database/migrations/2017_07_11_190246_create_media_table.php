@@ -14,6 +14,7 @@ class CreateMediaTable extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('ididea');
             $table->smallInteger('type')->comment('1:Logo, 2:Video, 3:Image');
             $table->smallInteger('location')->comment('1:Local, 2:External');

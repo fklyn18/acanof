@@ -40,19 +40,26 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        // declaration form variables
+        $class = 'success';
+        $message = null;
         // validate fields
         $this->rulesOfValidation($request);
-//        echo "<li>".Auth::user()->id."</li>";
-//        echo "<li>".$request->all()['title']."</li>";
-//        echo "<li>".$request->all()['bio']."</li>";
-//        exit();
         // create a object to store in DB
         $profile = new Profiles();
         $profile->iduser = Auth::user()->id;
         $profile->title = $request->all()['title'];
         $profile->bio = $request->all()['bio'];
         $profile->save();
-        return redirect(route('profile'))->with('success', __('validation.messages.saved ', ['name'=>'profile']));
+
+        // validate if return a identifier from profile to prepare message
+        if (!empty($profile->id)){
+            $message = __('validation.messages.saved', ['name'=>'profile']);
+        }else{
+            $class = 'danger';
+            $message = __('validation.messages.failed_save', ['name'=>'profile']);
+        }
+        return redirect(route('profile'))->with($class, $message);
     }
 
     public function update(Request $request){

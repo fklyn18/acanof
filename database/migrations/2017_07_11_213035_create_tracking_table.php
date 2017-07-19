@@ -14,6 +14,7 @@ class CreateTrackingTable extends Migration
     public function up()
     {
         Schema::create('tracking', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('ididea');
             $table->integer('status')->comment('1:Sent, 2:Read, 3:In process of selection, 4:Selected, 5:Discarded');
             $table->timestamps();
