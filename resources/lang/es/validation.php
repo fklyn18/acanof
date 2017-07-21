@@ -147,5 +147,6 @@ return [
 
     'messages' => [
         'saved' => ':name guardado exitosamente',
+        'failed_save' => ':name no se pudo guardar correctamente',
     ],
 ];

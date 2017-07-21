@@ -18,15 +18,29 @@ class ProfileController extends Controller
     {
         $action = '';
         $button = '';
+        $title = '';
+        $bio = '';
+        // consult user profile
+        $profile = Profiles::getProfile(Auth::user()->id)->get();
+//        $profile = Profiles::find(Auth::user()->id);
+//        dd($profile[0]->title);
+//        dd($profile[0]->bio);
         // Validate if a stored user profile exists to edit but store new
-        if (count(Profiles::getProfile(Auth::user()->id)->get()) > 0){
+        if (count($profile) > 0){
             $action = 'edit-profile';
             $button = __('Edit');
+            $title = $profile[0]->title;
+            $bio = $profile[0]->bio;
         }else{
             $action = 'store-profile';
             $button = __('Save');
         }
-        return View::make('public.profile.list', ['action'=>$action, 'button'=>$button])->withTitle('Profiles.');
+        return View::make('public.profile.list', [
+            'action'=>$action,
+            'button'=>$button,
+            'titlevalue'=>$title,
+            'biovalue'=>$bio,
+        ])->withTitle('Profiles.');
     }
 
     public function profiles(){
@@ -41,7 +55,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         // declaration form variables
-        $class = 'success';
+        $type = 'msj_success';
         $message = null;
         // validate fields
         $this->rulesOfValidation($request);
@@ -56,10 +70,10 @@ class ProfileController extends Controller
         if (!empty($profile->id)){
             $message = __('validation.messages.saved', ['name'=>'profile']);
         }else{
-            $class = 'danger';
+            $type = 'msj_danger';
             $message = __('validation.messages.failed_save', ['name'=>'profile']);
         }
-        return redirect(route('profile'))->with($class, $message);
+        return redirect(route('profile'))->with($type, $message);
     }
 
     public function update(Request $request){

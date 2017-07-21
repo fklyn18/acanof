@@ -29,3 +29,9 @@ jQuery(document).ready(function ($){
         console.info(_token);
     });
 });
+
+(function ($){
+    $.fn.extend({
+        //return this.each(function (){});
+    });
+})(jQuery);

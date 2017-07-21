@@ -7,15 +7,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $title }}</div>
                 <div class="panel-body">
-                    {{--@if (count($errors)>0)--}}
-                        {{--<div class="alert alert-danger">--}}
-                            {{--<ul>--}}
-                                {{--@foreach ($errors->all() as $error)--}}
-                                    {{--<li>{{ $error }}</li>--}}
-                                {{--@endforeach--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                    {{--@endif--}}
+
+                    @if(session()->has('msj_success'))
+                        <div class="alert alert-success first-capitalize">
+                            {{ session('msj_success') }}
+                        </div>
+                    @elseif(session()->has('msj_info'))
+                        <div class="alert alert-info first-capitalize">
+                            {{ session('msj_info') }}
+                        </div>
+                    @elseif(session()->has('msj_warning'))
+                        <div class="alert alert-info first-capitalize">
+                            {{ session('msj_warning') }}
+                        </div>
+                    @elseif(session()->has('msj_danger'))
+                        <div class="alert alert-danger first-capitalize">
+                            {{ session('msj_danger') }}
+                        </div>
+                    @endif
                     <form class="form-horizontal" method="POST" action="{{ route($action) }}">
                         {{ csrf_field() }}
 
@@ -24,7 +33,7 @@
                             <label for="email" class="col-md-4 control-label"> Titulo </label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" autofocus>
+                                <input id="title" type="text" class="form-control" name="title" value="@if (!$titlevalue == ''){{$titlevalue}}@else{{old('title')}}@endif" autofocus>
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">
@@ -38,7 +47,7 @@
                             <label for="password" class="col-md-4 control-label">Bio</label>
 
                             <div class="col-md-6">
-                                <input id="bio" type="text" class="form-control" name="bio" >
+                                <input id="bio" type="text" class="form-control" name="bio" value="@if ($biovalue != ''){{ $biovalue }}@else{{old('bio')}}@endif">
 
                                 @if ($errors->has('bio'))
                                     <span class="help-block">
